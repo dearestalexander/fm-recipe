@@ -1,35 +1,20 @@
 /* specificaiton summary
 
-- Mobile: 375px
-- Desktop: 1440px
-- Range from 320px to large screens (1920x1080, but what about retina?)
-- Colors: see variables
-- Font size: see variables, 16px which converts to 1 rem
-- Fonts:
-  - [Young Serif](https://fonts.google.com/specimen/Young+Serif)
-    - Weights: 400
-  - [Outfit](https://fonts.google.com/specimen/Outfit)
-    - Weights: 400, 600, 700
+Testing:
+- Tested 320 to 1920+
+- Tested zoom up to 200%
 
-.young-serif-regular {
-  font-family: "Young Serif", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.outfit-<uniquifier> {
-  font-family: "Outfit", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
-}
-
-
-
+Font's loaded from google:
+- [Young Serif](https://fonts.google.com/specimen/Young+Serif)
+  - Specification weights: 400
+- [Outfit](https://fonts.google.com/specimen/Outfit)
+  - Specification weights: 400, 600, 700
 */
 
+
+/* Variables */
 :root {
-  --color-White: hsl(0, 0%, 100%);
+  --color-white: hsl(0, 0%, 100%);
   --color-stone100: hsl(30, 54%, 90%);
   --color-stone150: hsl(30, 18%, 87%);
   --color-stone600: hsl(30, 10%, 34%);
@@ -38,8 +23,142 @@
   --color-rose800: hsl(332, 51%, 32%);
   --color-rose50: hsl(330, 100%, 98%);
 
-  --fontsize-paragraph: 1rem;
+  --fontsize-paragraph: 1rem; /* all other sizes calculated based on this */
+  --align-left: 1rem; /* to align list items (assumes browser default of 1 rem */
 }
 
 
+/* Reset (remove or adjust default behaviour) */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
+body {
+  margin: 0;
+}
+
+ul, ol {
+  padding-left: var(--align-left);
+}
+
+
+/* Style main and body including appling base style for page */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-stone100);
+  font-family: Outfit;
+  font-size: var(--fontsize-paragraph);
+  font-weight: 400;
+  color: var(--color-stone600);
+}
+
+main {
+  background-color: var(--color-white);
+  border-radius: 1rem;
+  padding: calc(var(--fontsize-paragraph) * 2);
+  margin: 5rem auto; /* set some space at top and bottom */
+  width: min(65ch, 90%);  /* use min to get responsive width */
+}
+
+
+/* set default styling for most sections (main title, intro, ingredients, instructions, nutrition) */
+.recipe__main-title {
+  font-family: "Young Serif";
+  font-size: calc(var(--fontsize-paragraph) * 2.5);
+  color: var(--color-stone900);
+}
+
+.recipe__sub-title {
+  font-family: "Young Serif";
+  color: var(--color-brown800);
+  font-size: calc(var(--fontsize-paragraph) * 1.8);
+}
+
+.recipe__list::marker {
+  color: var(--color-brown800);
+}
+
+.recipe__list {
+  color: var(--color-stone600);
+  padding-left: calc(var(--fontsize-paragraph) * 1);
+  margin-top: calc(var(--fontsize-paragraph) * 1);
+  line-height: calc(var(--fontsize-paragraph) * 1.5);
+}
+
+
+/* set some 'emphasis' & format styles used at various points */
+.recipe__emphasis--bold-text {
+  font-weight: 600;
+}
+
+.recipe__emphasis--bold-brown-text {
+  color: var(--color-brown800);
+  font-weight: 700;
+}
+
+.recipe__break-line {
+  margin-top: calc(var(--fontsize-paragraph) * 1.5);
+  width: 100%;
+  border: 0.5px solid var(--color-stone150); /* okay to use px in this case? */
+}
+
+
+/* set style for the main 'highlighted' area i.e. the preparation section */
+.recipe__section--highlight {
+  margin-top: calc(var(--fontsize-paragraph) * 2);
+  padding: calc(var(--fontsize-paragraph) * 1.5);
+  background-color: var(--color-rose50);
+}
+
+.recipe__sub-title--highlight {
+  margin: 0;
+  font-size: var(--fontsize-paragraph);
+  color: var(--color-rose800);
+}
+
+.recipe__list--highlight::marker {
+  color: var(--color-rose800);
+}
+
+.recipe__list--highlight {
+  color: var(--color-stone600);
+  padding-left: var(--fontsize-paragraph);
+  margin-top: calc(var(--fontsize-paragraph) * 1);
+  line-height: calc(var(--fontsize-paragraph) * 1);
+}
+
+
+/* style nutrition info table */
+.recipe__table {
+  width: 100%;
+  border-collapse: collapse
+}
+
+.recipe__table-row {
+  border-bottom: 0.5px solid black; /* okay to use px here? */
+  height: 1rem;
+}
+
+.recipe__table-cell {
+  padding: 1rem;
+}
+
+.recipe__table-row:last-child {
+  border-bottom: none;
+}
+
+
+/* style footer */
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%); 
+}
